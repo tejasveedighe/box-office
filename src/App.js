@@ -1,12 +1,23 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Navs from './components/Navs';
+import Home from './pages/Home';
+import Starred from './pages/Starred';
 
 function App() {
   return (
-    <Routes>
-      <Route exact path="/" element={<div>HomePage</div>} />;
-      <Route>Code 404 Page Not Found</Route>
-    </Routes>
+    <div>
+      <Navs />
+      <Routes>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/starred">
+          <Starred />
+        </Route>
+        <Route>Code 404 Page Not Found</Route>
+      </Routes>
+    </div>
   );
 }
 
