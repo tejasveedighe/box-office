@@ -14,9 +14,20 @@ export default function Home() {
       .then(result => console.log(result));
   };
 
+  const keyDown = event => {
+    if (event.keyCode === 13) {
+      onSearch();
+    }
+  };
+
   return (
     <MainPageLayout>
-      <input type="text" onChange={handleInputChange} value={input} />
+      <input
+        type="text"
+        onChange={handleInputChange}
+        onKeyDown={keyDown}
+        value={input}
+      />
       <button type="button" onClick={onSearch}>
         Search
       </button>
