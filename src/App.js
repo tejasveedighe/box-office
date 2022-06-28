@@ -9,12 +9,8 @@ function App() {
     <div>
       <Navs />
       <Routes>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/starred">
-          <Starred />
-        </Route>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/starred" element={<Starred />} />
         <Route>Code 404 Page Not Found</Route>
       </Routes>
     </div>
