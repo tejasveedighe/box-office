@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MainPageLayout from '../components/MainPageLayout';
+import getAPI from '../misc/config';
 
 export default function Home() {
   const [input, setInput] = useState('');
@@ -10,9 +11,7 @@ export default function Home() {
   };
 
   const onSearch = () => {
-    fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
-      .then(r => r.json())
-      .then(result => setResults(result));
+    getAPI(`/search/shows?q=${input}`).then(r => setResults(r));
   };
 
   const keyDown = event => {
