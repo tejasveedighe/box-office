@@ -3,29 +3,34 @@ import React from 'react';
 import IMG_PLACEHOLDER from '../../not-found.png';
 import { Star } from '../styled';
 
+import { MainDataWrapper, Headline, TagList } from './ShowMainData.styled';
+
 export default function ShowMainData({ image, name, rating, summary, tags }) {
   return (
-    <div>
+    <MainDataWrapper>
       <img src={image ? image.original : IMG_PLACEHOLDER} alt="show-cover" />
-      <div>
-        <div>
+      <div className="text-side">
+        <Headline>
           <h1>{name}</h1>
           <div>
             <Star />
             <span>{rating.average || 'N/A'}</span>
           </div>
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: summary }} />
+        </Headline>
+        <div
+          className="summary"
+          dangerouslySetInnerHTML={{ __html: summary }}
+        />
 
         <div>
           Tags:{' '}
-          <div>
+          <TagList>
             {tags.map((tag, i) => (
               <span key={i}>{tag}</span>
             ))}
-          </div>
+          </TagList>
         </div>
       </div>
-    </div>
+    </MainDataWrapper>
   );
 }
