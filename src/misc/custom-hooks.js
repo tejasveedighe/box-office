@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 
 // the reducer function useReducer
-const reducer = (prevState, action) => {
+const showReducer = (prevState, action) => {
   switch (action.type) {
     case 'ADD': {
       return [...prevState, action.showId];
@@ -37,5 +37,5 @@ function usePersistedReducer(reducer, initalState, key) {
 
 // using this function so that we dont have to call the usePersistedReducer and pass a reducer to it
 export function useShows(key = 'shows') {
-  return usePersistedReducer(reducer, [], key);
+  return usePersistedReducer(showReducer, [], key);
 }
