@@ -21,7 +21,7 @@ function ShowCard({ id, image, name, summary, onClickStar, isStarred }) {
       <div className="btns">
         <Link to={`/show/${id}`}>Read more</Link>
         <button type="button" onClick={onClickStar}>
-          {isStarred ? <Star active /> : <Star />}
+          <Star active={isStarred} />
         </button>
       </div>
     </StyledShowCard>
