@@ -13,7 +13,7 @@ export default function ShowMainData({ image, name, rating, summary, tags }) {
         <Headline>
           <h1>{name}</h1>
           <div>
-            <Star />
+            <Star active />
             <span>{rating.average || 'N/A'}</span>
           </div>
         </Headline>
