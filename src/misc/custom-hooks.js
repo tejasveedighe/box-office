@@ -72,15 +72,15 @@ const reducer = (prevState, action) => {
 };
 
 export function useShow(showId) {
-  let isMounted = true;
-
-  const [shows, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(reducer, {
     show: null,
     isLoading: true,
     error: null,
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     getAPI(`/shows/${showId}?embed[]=seasons&embed[]=cast`)
       .then(results => {
         if (isMounted) {
@@ -97,5 +97,5 @@ export function useShow(showId) {
     };
   }, [showId]);
 
-  return [shows];
+  return state;
 }

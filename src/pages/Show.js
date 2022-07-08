@@ -12,7 +12,7 @@ import { ShowPageWrapper, InfoBlock } from './Show.styled';
 function Show() {
   const { id } = useParams();
 
-  const [{ show, isLoading, error }] = useShow(id);
+  const { show, isLoading, error } = useShow(id);
 
   if (isLoading) {
     return <div>The Data is being Loaded</div>;
