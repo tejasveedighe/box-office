@@ -9,6 +9,7 @@ import {
   SearchButtonWrapper,
   SearchInput,
 } from './Home.styled';
+import CustomrRadio from '../components/CustomrRadio';
 
 export default function Home() {
   const [input, setInput] = useLastQuery('');
@@ -62,28 +63,22 @@ export default function Home() {
 
       <RadioInputsWrapper>
         <div>
-          <label htmlFor="show-search">
-            Shows
-            <input
-              id="show-search"
-              type="radio"
-              value="shows"
-              checked={isShowOption}
-              onChange={onRadioChange}
-            />
-          </label>
+          <CustomrRadio
+            label="Shows"
+            id="shows-search"
+            value="shows"
+            checked={isShowOption}
+            onChange={onRadioChange}
+          />
         </div>
         <div>
-          <label htmlFor="people-search">
-            People
-            <input
-              id="people-search"
-              type="radio"
-              value="people"
-              checked={!isShowOption}
-              onChange={onRadioChange}
-            />
-          </label>
+          <CustomrRadio
+            label="Actors"
+            id="people-search"
+            value="people"
+            checked={!isShowOption}
+            onChange={onRadioChange}
+          />
         </div>
       </RadioInputsWrapper>
 
