@@ -4,6 +4,11 @@ import getAPI from '../misc/config';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorGrid from '../components/actor/ActorGrid';
 import { useLastQuery } from '../misc/custom-hooks';
+import {
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+  SearchInput,
+} from './Home.styled';
 
 export default function Home() {
   const [input, setInput] = useLastQuery('');
@@ -48,16 +53,18 @@ export default function Home() {
 
   return (
     <MainPageLayout>
-      <input
+      <SearchInput
         type="text"
         onChange={handleInputChange}
         onKeyDown={keyDown}
         value={input}
       />
-      <button type="button" onClick={onSearch}>
-        Search
-      </button>
-      <div>
+      <SearchButtonWrapper>
+        <button type="button" onClick={onSearch}>
+          Search
+        </button>
+      </SearchButtonWrapper>
+      <RadioInputsWrapper>
         <label htmlFor="show-search">
           Shows
           <input
@@ -79,7 +86,7 @@ export default function Home() {
             onChange={onRadioChange}
           />
         </label>
-      </div>
+      </RadioInputsWrapper>
       {renderResults()}
     </MainPageLayout>
   );
