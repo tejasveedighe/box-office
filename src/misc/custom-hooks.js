@@ -1,4 +1,5 @@
 import { useReducer, useEffect, useState } from 'react';
+import getAPI from './config';
 
 // the reducer function useReducer
 const showReducer = (prevState, action) => {
@@ -40,6 +41,7 @@ export function useShows(key = 'shows') {
   return usePersistedReducer(showReducer, [], key);
 }
 
+// custom hook for saving the input from refreshing
 export function useLastQuery(key = 'lastQuery') {
   const [input, setInput] = useState(() => {
     const persisited = sessionStorage.getItem(key);
@@ -52,4 +54,48 @@ export function useLastQuery(key = 'lastQuery') {
   };
 
   return [input, usePersistedInput];
+}
+
+// custom hook for getting the show page
+
+const reducer = (prevState, action) => {
+  switch (action.type) {
+    case 'FETCH_SUCCESS': {
+      return { show: action.show, isLoading: false, error: null };
+    }
+    case 'FETCH_FAILED': {
+      return { ...prevState, error: action.error, isLoading: false };
+    }
+    default:
+      return prevState;
+  }
+};
+
+export function useShow(showId) {
+  let isMounted = true;
+
+  const [shows, dispatch] = useReducer(reducer, {
+    show: null,
+    isLoading: true,
+    error: null,
+  });
+
+  useEffect(() => {
+    getAPI(`/shows/${showId}?embed[]=seasons&embed[]=cast`)
+      .then(results => {
+        if (isMounted) {
+          dispatch({ type: 'FETCH_SUCCESS', show: results });
+        }
+      })
+      .catch(err => {
+        if (isMounted) {
+          dispatch({ type: 'FETCH_FAILED', error: err.message });
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [showId]);
+
+  return [shows];
 }
