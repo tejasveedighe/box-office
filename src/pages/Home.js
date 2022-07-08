@@ -59,34 +59,40 @@ export default function Home() {
         onKeyDown={keyDown}
         value={input}
       />
+
+      <RadioInputsWrapper>
+        <div>
+          <label htmlFor="show-search">
+            Shows
+            <input
+              id="show-search"
+              type="radio"
+              value="shows"
+              checked={isShowOption}
+              onChange={onRadioChange}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="people-search">
+            People
+            <input
+              id="people-search"
+              type="radio"
+              value="people"
+              checked={!isShowOption}
+              onChange={onRadioChange}
+            />
+          </label>
+        </div>
+      </RadioInputsWrapper>
+
       <SearchButtonWrapper>
         <button type="button" onClick={onSearch}>
           Search
         </button>
       </SearchButtonWrapper>
-      <RadioInputsWrapper>
-        <label htmlFor="show-search">
-          Shows
-          <input
-            id="show-search"
-            type="radio"
-            value="shows"
-            checked={isShowOption}
-            onChange={onRadioChange}
-          />
-        </label>
 
-        <label htmlFor="people-search">
-          People
-          <input
-            id="people-search"
-            type="radio"
-            value="people"
-            checked={!isShowOption}
-            onChange={onRadioChange}
-          />
-        </label>
-      </RadioInputsWrapper>
       {renderResults()}
     </MainPageLayout>
   );
