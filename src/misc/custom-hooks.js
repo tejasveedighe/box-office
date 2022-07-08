@@ -25,7 +25,7 @@ function usePersistedReducer(reducer, initalState, key) {
      in this case we used this lazy initializer so that when we refresh the page the data stays
      the localStorage will be set to null after the refresh but when we set the data to a variable it can be set to it again */
     const persisited = localStorage.getItem(key);
-    return persisited ? JSON.stringify(persisited) : initial;
+    return persisited ? JSON.parse(persisited) : initial;
   });
 
   useEffect(() => {
